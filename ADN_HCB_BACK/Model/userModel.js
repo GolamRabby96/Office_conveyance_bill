@@ -21,6 +21,10 @@ const userSchema = new Schema({
         type: String,
         require: true
     },
+    next_responsible_person_id :{
+        type: String,
+        require: true
+    },
     user_designation :{
         type: String,
         require: true
