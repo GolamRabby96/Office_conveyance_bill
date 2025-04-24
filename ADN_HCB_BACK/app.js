@@ -6,6 +6,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import zoneRouter from "./Routers/zoneRouters.js"
 import userRouter from "./Routers/userRouters.js";
+import conveyanceRouter from "./Routers/conveyanceRouters.js";
 
 
 
@@ -41,10 +42,10 @@ app.get('/', (req, res) => {
 });
 
 
-app.use(zoneRouter);
-app.use(userRouter);
+app.use("/api",zoneRouter);
+app.use("/api",userRouter);
+app.use("/api",conveyanceRouter);
 
-console.log("called");
 
 
 //Non define routes

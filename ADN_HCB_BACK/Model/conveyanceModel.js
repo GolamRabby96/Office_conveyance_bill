@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const userSchema = new Schema({
+const conveyanceSchema = new Schema({
     date:{
         type: Date,
         require: true
@@ -47,7 +47,7 @@ const userSchema = new Schema({
         type: String,
         require: true
     },
-    Preparer_by:{
+    preparer_by:{
         type:String,
         require: true
     },
@@ -59,9 +59,19 @@ const userSchema = new Schema({
         type: String,
         require: true
     },
+    next_responsible_person:{
+        type: String,
+        require: true
+    },
+    next_responsible_person_id:{
+        type: String,
+        require: true
+    },
     reject_note:{
         type:String,
         default:""
     }
 
 },{timestamps:true})
+
+export default model('Conveyance', conveyanceSchema)
