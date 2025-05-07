@@ -88,6 +88,10 @@ const conveyanceSchema = new Schema({
     reject_note: {
         type: String,
         default: ""
+    },
+    reject_condition:{
+        type: Boolean,
+        default: false
     }
 
 }, { timestamps: true })
