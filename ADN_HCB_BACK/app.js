@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import zoneRouter from "./Routers/zoneRouters.js"
 import userRouter from "./Routers/userRouters.js";
 import conveyanceRouter from "./Routers/conveyanceRouters.js";
+import commonRouter from "./Routers/commonRouter.js";
 
 
 
@@ -45,6 +46,7 @@ app.get('/', (req, res) => {
 app.use("/api",zoneRouter);
 app.use("/api",userRouter);
 app.use("/api",conveyanceRouter);
+app.use('/api',commonRouter);
 
 
 

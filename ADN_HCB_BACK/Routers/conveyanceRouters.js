@@ -4,7 +4,7 @@ import { addConveyance, getConveyance, getPendingList, rejectConvenceBill, updat
 const conveyanceRouter = express.Router();
 
 conveyanceRouter.post('/addConveyance', addConveyance);
-conveyanceRouter.post('/getConveyance', getConveyance);
+conveyanceRouter.post('/getConveyance/:id', getConveyance);
 conveyanceRouter.post('/updateMultipleId', updateMultipleId);
 conveyanceRouter.post('/rejectConvenceBill/:id', rejectConvenceBill);
 

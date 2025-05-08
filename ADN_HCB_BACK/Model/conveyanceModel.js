@@ -6,8 +6,7 @@ import { Schema, model } from "mongoose";
 
 const conveyanceSchema = new Schema({
     date: {
-        type: Date,
-        require: true
+        type: Date
     },
     month: {
         type: String
@@ -24,34 +23,33 @@ const conveyanceSchema = new Schema({
         require: true
     },
     from_location: {
-        type: String,
-        require: true
+        type: String
     },
     to_location: {
-        type: String,
-        require: true
+        type: String
     },
     ticket_id: {
         type: String,
         require: true
     },
     pop_or_customer_name: {
-        type: String,
-        require: true
+        type: String
     },
     transport: {
-        type: String,
-        require: true
+        type: String
     },
     conveyance_amount: {
-        type: String,
-        require: true
+        type: Number,
+        default: 0,
     },
     remarks: {
+        type: String
+    },
+    preparer_by: {
         type: String,
         require: true
     },
-    preparer_by: {
+    preparer_id:{
         type: String,
         require: true
     },
@@ -85,6 +83,32 @@ const conveyanceSchema = new Schema({
         type: String,
         require: true
     },
+    // ---------------------------------------------------
+    holiday_hour:{
+        type: String,
+    },
+    holiday_amount:{
+        type: Number,
+        default: 0,
+    },
+    overtime_from:{
+        type: String,
+    },
+    overtime_to:{
+        type: String,
+    },
+    overtime_hour:{
+        type: Number,
+    },
+    overtime_amount:{
+        type: Number,
+        default: 0,
+    },
+    Dinner_amount:{
+        type: Number, 
+        default: 0,
+    },
+    // ---------------------------------------------------
     reject_note: {
         type: String,
         default: ""

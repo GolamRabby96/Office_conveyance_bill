@@ -14,6 +14,8 @@ export const addConveyance = async (req, res) => {
 export const getConveyance = async (req, res) => {
     const { month, year } = req.body;
     const conveyanceBill = await Conveyance.find({
+        preparer_id : req.params.id,
+        reject_condition: false,
         month: month,
         year: year
     })
@@ -99,3 +101,4 @@ export const rejectConvenceBill = async(req, res)=>{
         message: 'Pending list found'
     })
 }
+
