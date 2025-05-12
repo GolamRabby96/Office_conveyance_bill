@@ -1,5 +1,5 @@
 import express from 'express'
-import { addConveyance, getConveyance, getPendingList, rejectConvenceBill, updateMultipleId } from '../Controller/conveyanceController.js';
+import { addConveyance, deleteConveyanceBill, getConveyance, getPendingList, getSingleConveyanceBill, rejectConvenceBill, updateMultipleId, updateSingleConveyance } from '../Controller/conveyanceController.js';
 
 const conveyanceRouter = express.Router();
 
@@ -8,5 +8,12 @@ conveyanceRouter.post('/getConveyance/:id', getConveyance);
 conveyanceRouter.post('/updateMultipleId', updateMultipleId);
 conveyanceRouter.post('/rejectConvenceBill/:id', rejectConvenceBill);
 
+conveyanceRouter.put('/updateSingleConveyance/:id', updateSingleConveyance);
+
 conveyanceRouter.get('/pendingList/:id', getPendingList);
+conveyanceRouter.get('/singleConveyance/:id', getSingleConveyanceBill);
+
+
+conveyanceRouter.delete('/deleteConveyance/:id', deleteConveyanceBill);
+
 export default conveyanceRouter;
