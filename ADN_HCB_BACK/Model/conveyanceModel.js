@@ -113,7 +113,10 @@ const conveyanceSchema = new Schema({
         type: String,
         default: ""
     },
-
+    reject_condition:{
+        type: Boolean,
+        default: false
+    }
 
 }, { timestamps: true })
 
