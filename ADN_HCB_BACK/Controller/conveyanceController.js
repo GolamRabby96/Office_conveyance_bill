@@ -117,6 +117,36 @@ export const rejectConvenceBill = async (req, res) => {
     })
 }
 
+// Group Collection
+export const groupCollection = async (req, res) => {
+    const {month, year} =  req.body;
+    const groupConveyance = await Conveyance.aggregate(
+        [
+            {
+                $match:{
+                    month: month,
+                    year : year,
+                    reject_condition : false
+                },
+            },
+            {
+                $group: {
+                    _id: "$preparer_id",
+                    preparer_by: { $push: "$preparer_by" },
+                    preparer_Zone: { $push: "$preparer_Zone" },
+                    count: { $sum: 1 },
+                    allData :{$push:"$$ROOT"}
+                }
+            }
+        ]
+    );
+
+        res.status(200).json({
+        data: groupConveyance,
+        message: 'Done'
+    })
+}
+
 // Delete conveyance section
 export const deleteConveyanceBill = async (req, res) => {
     const deleteConveyance = await Conveyance.deleteOne({ _id: req.params.id });
