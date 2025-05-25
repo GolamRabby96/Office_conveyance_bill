@@ -41,14 +41,12 @@ export const getUserById = async (req, res) => {
 export const updateUser = async (req, res) => {
     const updateData = req.body;
     const id = { user_id: req.params.id };
-    // console.log('--------------',updateData,'*******************' ,id)
 
     const updateOne = await User.findOneAndUpdate({ user_id: req.params.id }, updateData, {
         new: true
     });
     
     if (!updateOne) return res.status(404).json({ message: error.message })
-    console.log('-----',updateOne);
     res.status(200).json({
         message: "User Deleted Successfully"
     })
@@ -79,6 +77,7 @@ export const checkUser = async (req, res) => {
 export const deleteUser = async(req, res)=>{
     const userDelete = await User.deleteOne({user_id: req.params.id});
     res.status(200).json({
+        operations : true,
         message:'User Removed from your database'
     })
 }

@@ -116,6 +116,10 @@ const conveyanceSchema = new Schema({
     reject_condition:{
         type: Boolean,
         default: false
+    },
+    amount_limit :{
+        type: Number,
+        default:0
     }
 
 }, { timestamps: true })

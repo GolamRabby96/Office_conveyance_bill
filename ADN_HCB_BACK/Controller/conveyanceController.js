@@ -164,6 +164,7 @@ export const summaryView = async (req, res) => {
                 $group: {
                     _id: "$preparer_id",
                     name:{ $addToSet:"$preparer_by"},
+                    limit:{$addToSet:"$amount_limit"},
                     month:{$addToSet: "$month"},
                     holiday :{$sum: "$holiday_amount"},
                     overtime :{$sum : "$overtime_amount"},

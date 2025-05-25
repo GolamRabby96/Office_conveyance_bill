@@ -3,7 +3,6 @@ import Conveyance from '../Model/conveyanceModel.js';
 
 
 export const rejectList = async(req, res)=>{
-    console.log(req.params.id);
 
     const rejectConveyance = await Conveyance.find({
         preparer_id: req.params.id,
@@ -16,5 +15,4 @@ export const rejectList = async(req, res)=>{
         data: rejectConveyance,
         message: "Reject list found"
     })
-    console.log(rejectConveyance);
 }
