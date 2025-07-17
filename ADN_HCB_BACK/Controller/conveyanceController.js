@@ -71,7 +71,7 @@ export const updateSingleConveyance = async (req, res) => {
 export const updateMultipleId = async (req, res) => {
     const multiID = req.body[0];
     const { next_responsible_person, next_responsible_person_id } = req.body;
-    const { approver_name, approver_id, approver_designation } = req.body.approver;
+    const { approver_name, approver_id, approver_designation, approver_priority } = req.body.approver;
 
     const updateOne = await Conveyance.updateMany(
         { _id: { $in: multiID } },
@@ -84,7 +84,8 @@ export const updateMultipleId = async (req, res) => {
                 Approver_list: {
                     approver_name: approver_name,
                     approver_id: approver_id,
-                    approver_designation: approver_designation
+                    approver_designation: approver_designation,
+                    approver_priority: approver_priority
                 }
             }
         },
@@ -119,14 +120,15 @@ export const rejectConvenceBill = async (req, res) => {
 
 // Group Collection
 export const groupCollection = async (req, res) => {
-    const {month, year} =  req.body;
+    console.log('hitted');
+    const { month, year } = req.body;
     const groupConveyance = await Conveyance.aggregate(
         [
             {
-                $match:{
+                $match: {
                     month: month,
-                    year : year,
-                    reject_condition : false
+                    year: year,
+                    reject_condition: false,
                 },
             },
             {
@@ -135,13 +137,14 @@ export const groupCollection = async (req, res) => {
                     preparer_by: { $push: "$preparer_by" },
                     preparer_Zone: { $push: "$preparer_Zone" },
                     count: { $sum: 1 },
-                    allData :{$push:"$$ROOT"}
+                    allData: { $push: "$$ROOT" }
                 }
             }
         ]
-    );
 
-        res.status(200).json({
+    );
+    console.log(groupConveyance)
+    res.status(200).json({
         data: groupConveyance,
         message: 'Done'
     })
@@ -150,32 +153,32 @@ export const groupCollection = async (req, res) => {
 
 // Group Collection
 export const summaryView = async (req, res) => {
-    const {month, year} =  req.body;
+    const { month, year } = req.body;
     const groupConveyance = await Conveyance.aggregate(
         [
             {
-                $match:{
+                $match: {
                     month: month,
-                    year : year,
-                    reject_condition : false
+                    year: year,
+                    reject_condition: false
                 },
             },
             {
                 $group: {
                     _id: "$preparer_id",
-                    name:{ $addToSet:"$preparer_by"},
-                    limit:{$addToSet:"$amount_limit"},
-                    month:{$addToSet: "$month"},
-                    holiday :{$sum: "$holiday_amount"},
-                    overtime :{$sum : "$overtime_amount"},
-                    DinnerBill :{$sum: "$Dinner_amount"},
-                    conveyance :{$sum: "$conveyance_amount"},
+                    name: { $addToSet: "$preparer_by" },
+                    limit: { $addToSet: "$amount_limit" },
+                    month: { $addToSet: "$month" },
+                    holiday: { $sum: "$holiday_amount" },
+                    overtime: { $sum: "$overtime_amount" },
+                    DinnerBill: { $sum: "$Dinner_amount" },
+                    conveyance: { $sum: "$conveyance_amount" },
                 }
             }
         ]
     );
 
-        res.status(200).json({
+    res.status(200).json({
         data: groupConveyance,
         message: 'Done'
     })

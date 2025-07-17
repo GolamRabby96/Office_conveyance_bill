@@ -1,9 +1,5 @@
 import { Schema, model } from "mongoose";
 
-// const Approver_model = new Schema({
-
-// })
-
 const conveyanceSchema = new Schema({
     date: {
         type: Date
@@ -14,7 +10,7 @@ const conveyanceSchema = new Schema({
     year: {
         type: String
     },
-    start_Time: {
+    start_time: {
         type: String,
         require: true
     },
@@ -49,7 +45,7 @@ const conveyanceSchema = new Schema({
         type: String,
         require: true
     },
-    preparer_id:{
+    preparer_id: {
         type: String,
         require: true
     },
@@ -66,6 +62,9 @@ const conveyanceSchema = new Schema({
                 type: String
             },
             approver_designation: {
+                type: String
+            },
+            approver_priority: {
                 type: String
             }
         }
@@ -84,28 +83,28 @@ const conveyanceSchema = new Schema({
         require: true
     },
     // ---------------------------------------------------
-    holiday_hour:{
+    holiday_hour: {
         type: String,
     },
-    holiday_amount:{
+    holiday_amount: {
         type: Number,
         default: 0,
     },
-    overtime_from:{
+    overtime_from: {
         type: String,
     },
-    overtime_to:{
+    overtime_to: {
         type: String,
     },
-    overtime_hour:{
-        type: Number,
+    overtime_hour: {
+        type: String,
     },
-    overtime_amount:{
-        type: Number,
-        default: 0,
+    overtime_amount: {
+        type: String,
+        default: '0',
     },
-    Dinner_amount:{
-        type: Number, 
+    Dinner_amount: {
+        type: Number,
         default: 0,
     },
     // ---------------------------------------------------
@@ -113,13 +112,13 @@ const conveyanceSchema = new Schema({
         type: String,
         default: ""
     },
-    reject_condition:{
+    reject_condition: {
         type: Boolean,
         default: false
     },
-    amount_limit :{
+    amount_limit: {
         type: Number,
-        default:0
+        default: 0
     }
 
 }, { timestamps: true })
