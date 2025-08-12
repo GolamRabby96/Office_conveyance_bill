@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
 const conveyanceSchema = new Schema({
     date: {
@@ -49,9 +50,9 @@ const conveyanceSchema = new Schema({
         type: String,
         require: true
     },
-    preparer_Zone: {
-        type: String,
-        require: true
+    preparer_info:{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User" 
     },
     Approver_list: [
         {
@@ -70,18 +71,6 @@ const conveyanceSchema = new Schema({
         }
     ],
 
-    next_approver: {
-        type: String,
-        require: true
-    },
-    next_responsible_person: {
-        type: String,
-        require: true
-    },
-    next_responsible_person_id: {
-        type: String,
-        require: true
-    },
     // ---------------------------------------------------
     holiday_hour: {
         type: String,
@@ -116,10 +105,6 @@ const conveyanceSchema = new Schema({
         type: Boolean,
         default: false
     },
-    amount_limit: {
-        type: Number,
-        default: 0
-    }
 
 }, { timestamps: true })
 

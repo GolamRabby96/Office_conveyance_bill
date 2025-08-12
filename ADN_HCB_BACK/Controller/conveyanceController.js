@@ -1,8 +1,13 @@
 import Conveyance from '../Model/conveyanceModel.js';
+import User from '../Model/userModel.js'
 
 // Add conveyance bill
 export const addConveyance = async (req, res) => {
     const addConveyance = new Conveyance(req.body);
+
+    const user = await User.findById(addConveyance.preparer_info);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
     await addConveyance.save();
 
     res.status(200).json({
@@ -29,7 +34,7 @@ export const getConveyance = async (req, res) => {
         reject_condition: false,
         month: month,
         year: year
-    })
+    }).populate("preparer_info")
 
     res.status(200).json({
         data: conveyanceBill,
